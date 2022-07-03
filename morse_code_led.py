@@ -3,7 +3,7 @@ import time
 import pyfirmata
 
 print("Creating configs")
-pin = 10
+pin = 13
 port = 'COM4'
 print("Connecting with arduino")
 board = pyfirmata.Arduino(port)
