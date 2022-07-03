@@ -3,11 +3,17 @@ import time
 import pyfirmata
 
 print("Creating configs")
-pin = 13
+pin = 10
 port = 'COM4'
 print("Connecting with arduino")
 board = pyfirmata.Arduino(port)
 
+dot_interval = 0.1
+dash_interval = 0.5
+space_interval = 2
+enable = 1
+disable = 0
+end_interval = 0.8
 print("Digite a frase a ser traduzida em morse: ")
 word = input()
 
@@ -25,21 +31,21 @@ dialect = {
 
 
 def do_dot():
-    board.digital[pin].write(1)
-    time.sleep(0.5)
-    board.digital[pin].write(0)
-    time.sleep(0.8)
+    board.digital[pin].write(enable)
+    time.sleep(dot_interval)
+    board.digital[pin].write(disable)
+    time.sleep(end_interval)
 
 
 def do_dash():
-    board.digital[pin].write(1)
-    time.sleep(1)
-    board.digital[pin].write(0)
-    time.sleep(0.8)
+    board.digital[pin].write(enable)
+    time.sleep(dash_interval)
+    board.digital[pin].write(disable)
+    time.sleep(end_interval)
 
 
 def do_space():
-    time.sleep(2)
+    time.sleep(space_interval)
 
 
 def do_morse(selectedWord):
